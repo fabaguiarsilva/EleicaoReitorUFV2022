@@ -39,6 +39,20 @@ public class Principal {
                     quantidadeVotos[i]+" votos!");
         }
         
+        
+        int indiceVencedor = 0;
+        for(int i=1; i<quantidadeVotos.length; i++){
+            if(quantidadeVotos[i] > quantidadeVotos[indiceVencedor]){
+                indiceVencedor = i;
+            }
+        }
+        
+        System.out.println("O vencedor foi o"
+                + "candidato "+nomesCandidatos[indiceVencedor]+""
+                        + " com "+quantidadeVotos[indiceVencedor]+""
+                                + " votos");
+        
+        
     }
 
 }
