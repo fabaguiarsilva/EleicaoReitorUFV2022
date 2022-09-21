@@ -51,19 +51,27 @@ public class Principal {
         
         
         int indiceVencedor = 0;
+        boolean empate = false;
         for(int i=1; i<quantidadeVotos.length; i++){
             if(quantidadeVotos[i] > quantidadeVotos[indiceVencedor]){
                 indiceVencedor = i;
+                empate = false;
+            }else if(quantidadeVotos[i] 
+                    == quantidadeVotos[indiceVencedor]){
+                empate = true;                
             }
         }
         
-        System.out.println("Votos nulos: "+quantidadeNulos);
         
-        System.out.println("O vencedor foi o"
+        System.out.println("Votos nulos: "+quantidadeNulos);
+        if(empate){
+            System.out.println("Empate! ");
+        }else{
+            System.out.println("O vencedor foi o"
                 + "candidato "+nomesCandidatos[indiceVencedor]+""
                         + " com "+quantidadeVotos[indiceVencedor]+""
                                 + " votos");
-        
+        }
         
     }
 
