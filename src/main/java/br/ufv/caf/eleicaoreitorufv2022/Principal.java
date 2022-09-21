@@ -21,17 +21,27 @@ public class Principal {
         };
     
         int[] quantidadeVotos = {0,0,0};
-
+        int quantidadeNulos = 0;
+        boolean valido = false;
+        
         Scanner scan = new Scanner(System.in);
         for(int i=0; i<nomesEleitores.length; i++){
             System.out.println("Voto do eleitor "+nomesEleitores[i]);
             int voto = scan.nextInt();
             //verifica se voto é válido
-            for(int j=0;j<numerosCandidatos.length;j++){
+            valido = false;
+            for(int j=0;j<numerosCandidatos.length;j++){                
                 if(voto == numerosCandidatos[j]){
                     quantidadeVotos[j]++;
+                    valido = true;
+                    break;
                 }
-            }                        
+            }
+            
+            if(!valido){
+                quantidadeNulos++;
+            }
+            
         }
         for(int i=0; i<quantidadeVotos.length; i++){
             System.out.println("Candidato "
@@ -46,6 +56,8 @@ public class Principal {
                 indiceVencedor = i;
             }
         }
+        
+        System.out.println("Votos nulos: "+quantidadeNulos);
         
         System.out.println("O vencedor foi o"
                 + "candidato "+nomesCandidatos[indiceVencedor]+""
