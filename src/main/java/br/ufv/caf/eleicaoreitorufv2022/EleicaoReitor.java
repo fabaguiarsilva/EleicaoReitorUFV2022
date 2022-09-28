@@ -13,10 +13,11 @@ public class EleicaoReitor {
     public void iniciarEleicao(){        
         iniciaCandidatos();
         iniciaEleitores();
+        quantidadeNulos = 0;
     }
        
-    public void iniciaCandidatos(){
-        quantidadeNulos = 0;
+    private void iniciaCandidatos(){
+        
         candidatos 
             = new ArrayList<Candidato>();
         
@@ -36,26 +37,30 @@ public class EleicaoReitor {
         nomesEleitores[2] = "Aluno 3";
         nomesEleitores[3] = "Aluno 4";                       
     }    
+
+    public void votar(int voto){
+        boolean valido = false;
+        for(int j=0;j<candidatos.size();j++){                
+            if(voto == candidatos.get(j).numero){
+                candidatos.get(j).votos++;
+                valido = true;
+                break;
+            }
+        }
+
+        if(!valido){
+            quantidadeNulos++;
+        }                    
+    }
     
     public void votacao(){
         Scanner scan = new Scanner(System.in);
         for(int i=0; i<nomesEleitores.length; i++){
             System.out.println("Voto do eleitor "+nomesEleitores[i]);
             int voto = scan.nextInt();
-            //verifica se voto é válido
-            boolean valido = false;
-            for(int j=0;j<candidatos.size();j++){                
-                if(voto == candidatos.get(j).numero){
-                    candidatos.get(j).votos++;
-                    valido = true;
-                    break;
-                }
-            }
-            
-            if(!valido){
-                quantidadeNulos++;
-            }            
-        }        
+            votar(voto);
+        }    
+        
     }
     
     public void imprimeVotos(){
@@ -65,8 +70,13 @@ public class EleicaoReitor {
                     candidatos.get(i).votos+" votos!");
         }        
     }
+    /**
+     * 
+     * @return numero candidato vencedor,
+     * ou -1 se empate
+     */
     
-    public void apuracao(){
+    public int apuracao(){
         int indiceVencedor = 0;
         boolean empate = false;
         for(int i=1; i<candidatos.size(); i++){
@@ -83,11 +93,13 @@ public class EleicaoReitor {
         System.out.println("Votos nulos: "+quantidadeNulos);
         if(empate){
             System.out.println("Empate! ");
+            return -1;
         }else{
             System.out.println("O vencedor foi o"
                 + "candidato "+candidatos.get(indiceVencedor).nome+""
                         + " com "+candidatos.get(indiceVencedor).votos+""
                                 + " votos");
+            return candidatos.get(indiceVencedor).numero;
         }        
     }
 }
