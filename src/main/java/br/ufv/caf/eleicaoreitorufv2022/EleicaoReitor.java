@@ -41,8 +41,8 @@ public class EleicaoReitor {
     public void votar(int voto){
         boolean valido = false;
         for(int j=0;j<candidatos.size();j++){                
-            if(voto == candidatos.get(j).numero){
-                candidatos.get(j).votos++;
+            if(voto == candidatos.get(j).getNumero()){
+                candidatos.get(j).incrVotos();
                 valido = true;
                 break;
             }
@@ -66,8 +66,8 @@ public class EleicaoReitor {
     public void imprimeVotos(){
         for(int i=0; i<candidatos.size(); i++){
             System.out.println("Candidato "
-                    +candidatos.get(i).nome+ " com "+
-                    candidatos.get(i).votos+" votos!");
+                    +candidatos.get(i).getNome()+ " com "+
+                    candidatos.get(i).getVotos()+" votos!");
         }        
     }
     /**
@@ -80,11 +80,11 @@ public class EleicaoReitor {
         int indiceVencedor = 0;
         boolean empate = false;
         for(int i=1; i<candidatos.size(); i++){
-            if(candidatos.get(i).votos > candidatos.get(indiceVencedor).votos){
+            if(candidatos.get(i).getVotos() > candidatos.get(indiceVencedor).getVotos()){
                 indiceVencedor = i;
                 empate = false;
-            }else if(candidatos.get(i).votos ==
-                        candidatos.get(indiceVencedor).votos){
+            }else if(candidatos.get(i).getVotos() ==
+                        candidatos.get(indiceVencedor).getVotos()){
                 empate = true;                
             }
         }
@@ -96,10 +96,10 @@ public class EleicaoReitor {
             return -1;
         }else{
             System.out.println("O vencedor foi o"
-                + "candidato "+candidatos.get(indiceVencedor).nome+""
-                        + " com "+candidatos.get(indiceVencedor).votos+""
+                + "candidato "+candidatos.get(indiceVencedor).getNome()+""
+                        + " com "+candidatos.get(indiceVencedor).getVotos()+""
                                 + " votos");
-            return candidatos.get(indiceVencedor).numero;
+            return candidatos.get(indiceVencedor).getNumero();
         }        
     }
 }

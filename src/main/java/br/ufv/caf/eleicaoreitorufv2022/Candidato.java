@@ -1,9 +1,9 @@
 package br.ufv.caf.eleicaoreitorufv2022;
 
 public class Candidato {
-    String nome;
-    int numero;
-    int votos;
+    private String nome;
+    private int numero;
+    private int votos;
     
     public Candidato(String nome,
                     int numero){
@@ -24,6 +24,9 @@ public class Candidato {
         return votos;
     }
     
+    public void incrVotos(){
+        this.votos++;
+    }
     
     
     
