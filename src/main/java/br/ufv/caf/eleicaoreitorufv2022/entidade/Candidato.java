@@ -1,4 +1,4 @@
-package br.ufv.caf.eleicaoreitorufv2022;
+package br.ufv.caf.eleicaoreitorufv2022.entidade;
 
 public class Candidato {
     private String nome;
@@ -28,7 +28,10 @@ public class Candidato {
         this.votos++;
     }
     
-    
-    
-    
+    @Override
+    public String toString(){
+        return "Nome: "+this.nome+
+                "\nNúmero: "+this.numero+
+                "\nVotos: "+this.votos;
+    }
 }

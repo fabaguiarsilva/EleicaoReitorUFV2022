@@ -1,28 +1,56 @@
 
-import br.ufv.caf.eleicaoreitorufv2022.EleicaoReitor;
+import br.ufv.caf.eleicaoreitorufv2022.controle.ControleEleicao;
+import br.ufv.caf.eleicaoreitorufv2022.entidade.Candidato;
+import br.ufv.caf.eleicaoreitorufv2022.entidade.Eleitor;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 
 public class TesteEleicao {
     
-    EleicaoReitor eleicao;
+    ControleEleicao eleicao;
     
     public TesteEleicao() {
     }
     
-    @Test
-    public void teste01(){
+    @BeforeEach
+    public void inicia(){
+        eleicao = new ControleEleicao();
+        eleicao.addCandidato
+            (new Candidato("Candidato 1",1));
+ 
+        eleicao.addCandidato
+            (new Candidato("Candidato 2",92));
+
+        eleicao.addCandidato
+            (new Candidato("Candidato 3",3));
+         
+        eleicao.addEleitor
+            (new Eleitor("Aluno 1", 1));
         
-        eleicao = new EleicaoReitor();
-        eleicao.iniciarEleicao();
+        eleicao.addEleitor
+            (new Eleitor("Aluno 2", 2));
+
+        eleicao.addEleitor
+            (new Eleitor("Aluno 3", 3));
+
+        eleicao.addEleitor
+            (new Eleitor("Aluno 4", 4));
+        
+    }
+    
+    @Test
+    public void teste01(){        
+        
+        inicia();
         
         eleicao.votar(1);
         eleicao.votar(1);
         eleicao.votar(1);        
         eleicao.votar(1);
         
-        int vencedor = eleicao.apuracao();
-        assertEquals(vencedor, 1);
+        Candidato vencedor = eleicao.apuracao();
+        assertEquals(vencedor.getNumero(), 1);
         
     }
     
@@ -30,95 +58,89 @@ public class TesteEleicao {
     @Test
     public void teste02(){
         
-        eleicao = new EleicaoReitor();
-        eleicao.iniciarEleicao();
+        inicia();
         
         eleicao.votar(92);
         eleicao.votar(1);
         eleicao.votar(1);        
         eleicao.votar(1);
         
-        int vencedor = eleicao.apuracao();
-        assertEquals(vencedor, 1);
+        Candidato vencedor = eleicao.apuracao();
+        assertEquals(vencedor.getNumero(), 1);
         
     }  
     
     @Test
     public void teste03(){
         
-        eleicao = new EleicaoReitor();
-        eleicao.iniciarEleicao();
+        inicia();
         
         eleicao.votar(1);
         eleicao.votar(1);
         eleicao.votar(1);        
         eleicao.votar(92);
         
-        int vencedor = eleicao.apuracao();
-        assertEquals(vencedor, 1);
+        Candidato vencedor = eleicao.apuracao();
+        assertEquals(vencedor.getNumero(), 1);
         
     }    
     
     @Test
     public void teste04(){
         
-        eleicao = new EleicaoReitor();
-        eleicao.iniciarEleicao();
+        inicia();
         
         eleicao.votar(1);
         eleicao.votar(1);
         eleicao.votar(92);        
         eleicao.votar(92);
         
-        int vencedor = eleicao.apuracao();
-        assertEquals(vencedor, -1);
+        Candidato vencedor = eleicao.apuracao();
+        assertNull(vencedor);
         
     }    
     
     @Test
     public void teste05(){
-        
-        eleicao = new EleicaoReitor();
-        eleicao.iniciarEleicao();
+
+        inicia();
         
         eleicao.votar(3);
         eleicao.votar(3);
         eleicao.votar(3);        
         eleicao.votar(3);
         
-        int vencedor = eleicao.apuracao();
-        assertEquals(vencedor, 3);
+        Candidato vencedor = eleicao.apuracao();
+        assertEquals(vencedor.getNumero(), 3);
         
     }
 
     @Test
     public void teste06(){
-        
-        eleicao = new EleicaoReitor();
-        eleicao.iniciarEleicao();
+
+        inicia();
         
         eleicao.votar(3);
         eleicao.votar(92);
         eleicao.votar(3);        
         eleicao.votar(3);
         
-        int vencedor = eleicao.apuracao();
-        assertEquals(vencedor, 3);
+        Candidato vencedor = eleicao.apuracao();
+        assertEquals(vencedor.getNumero(), 3);
         
     }
     @Test
     public void teste07(){
         
-        eleicao = new EleicaoReitor();
-        eleicao.iniciarEleicao();
+        inicia();
         
         eleicao.votar(1);
         eleicao.votar(2);
         eleicao.votar(1);        
         eleicao.votar(2);
         
-        int vencedor = eleicao.apuracao();
-        assertEquals(vencedor, 1);
+        Candidato vencedor = eleicao.apuracao();
+        assertEquals(vencedor.getNumero(), 1);
         
     }    
     
