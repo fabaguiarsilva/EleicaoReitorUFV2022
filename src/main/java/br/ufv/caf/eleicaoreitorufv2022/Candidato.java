@@ -10,5 +10,22 @@ public class Candidato {
         this.votos = 0;
         this.nome = nome;
         this.numero = numero;        
-    }    
+    }   
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public int getVotos() {
+        return votos;
+    }
+    
+    
+    
+    
+    
 }
