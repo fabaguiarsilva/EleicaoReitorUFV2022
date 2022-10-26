@@ -13,25 +13,25 @@ public class EleicaoReitorUFV {
         ControleEleicao eleicaoUFV = new ControleEleicao();
 
         eleicaoUFV.addCandidato
-            (new Candidato("Candidato 1",1));
+            (new Candidato("Candidato 1","1111", "Computação", 1));
  
         eleicaoUFV.addCandidato
-            (new Candidato("Candidato 2",92));
+            (new Candidato("Candidato 2","2222", "Quimica", 92));
 
         eleicaoUFV.addCandidato
-            (new Candidato("Candidato 3",3));
+            (new Candidato("Candidato 3","3333", "Computação",3));
          
         eleicaoUFV.addEleitor
-            (new Eleitor("Aluno 1", 1));
+            (new Eleitor("Aluno 1", "EF12345", "Computação"));
         
         eleicaoUFV.addEleitor
-            (new Eleitor("Aluno 2", 2));
+            (new Eleitor("Aluno 2", "EF23456", "Computação"));
 
         eleicaoUFV.addEleitor
-            (new Eleitor("Aluno 3", 3));
+            (new Eleitor("Aluno 3", "EF34567", "Eng. Alimentos"));
 
         eleicaoUFV.addEleitor
-            (new Eleitor("Aluno 4", 4));
+            (new Eleitor("Aluno 4", "EF45678", "Física"));
         
         TelaVotacao telaVotacao = new 
                             TelaVotacao(eleicaoUFV);

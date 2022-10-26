@@ -17,25 +17,25 @@ public class TesteEleicao {
     public void inicia(){
         eleicao = new ControleEleicao();
         eleicao.addCandidato
-            (new Candidato("Candidato 1",1));
+            (new Candidato("Candidato 1","1111", "Computação", 1));
  
         eleicao.addCandidato
-            (new Candidato("Candidato 2",92));
+            (new Candidato("Candidato 2","2222", "Quimica", 92));
 
         eleicao.addCandidato
-            (new Candidato("Candidato 3",3));
+            (new Candidato("Candidato 3","3333", "Computação",3));
          
         eleicao.addEleitor
-            (new Eleitor("Aluno 1", 1));
+            (new Eleitor("Aluno 1", "EF12345", "Computação"));
         
         eleicao.addEleitor
-            (new Eleitor("Aluno 2", 2));
+            (new Eleitor("Aluno 2", "EF23456", "Computação"));
 
         eleicao.addEleitor
-            (new Eleitor("Aluno 3", 3));
+            (new Eleitor("Aluno 3", "EF34567", "Eng. Alimentos"));
 
         eleicao.addEleitor
-            (new Eleitor("Aluno 4", 4));
+            (new Eleitor("Aluno 4", "EF45678", "Física"));
         
     }
     

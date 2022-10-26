@@ -1,21 +1,18 @@
 package br.ufv.caf.eleicaoreitorufv2022.entidade;
 
-public class Candidato {
-    private String nome;
+public class Candidato extends Docente {
     private int numero;
     private int votos;
     
     public Candidato(String nome,
+                    String matricula,
+                    String departamento,
                     int numero){
+        super(nome, matricula, departamento);
         this.votos = 0;
-        this.nome = nome;
         this.numero = numero;        
     }   
-
-    public String getNome() {
-        return nome;
-    }
-
+    
     public int getNumero() {
         return numero;
     }
@@ -30,7 +27,7 @@ public class Candidato {
     
     @Override
     public String toString(){
-        return "Nome: "+this.nome+
+        return super.toString()+
                 "\nNúmero: "+this.numero+
                 "\nVotos: "+this.votos;
     }
