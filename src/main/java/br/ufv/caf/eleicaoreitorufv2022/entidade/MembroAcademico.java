@@ -21,4 +21,8 @@ public abstract class MembroAcademico {
         return this.matricula;
     }    
     
+    public static void metodo(){
+        
+    }
+    
 }

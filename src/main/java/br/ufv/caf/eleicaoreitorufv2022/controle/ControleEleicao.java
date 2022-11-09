@@ -2,6 +2,8 @@ package br.ufv.caf.eleicaoreitorufv2022.controle;
 
 import br.ufv.caf.eleicaoreitorufv2022.entidade.Candidato;
 import br.ufv.caf.eleicaoreitorufv2022.entidade.Eleitor;
+import br.ufv.caf.eleicaoreitorufv2022.entidade.excecao.ExcecaoEleitorInvalido;
+import br.ufv.caf.eleicaoreitorufv2022.entidade.excecao.ExcecaoEleitorJaVotou;
 import java.util.ArrayList;
 
 public class ControleEleicao {
@@ -24,9 +26,20 @@ public class ControleEleicao {
     
     public void addEleitor(Eleitor e){
         eleitores.add(e);
-    }
+    }   
     
-    public void votar(int voto){
+    public void votar(String matricula, int voto) 
+                        throws ExcecaoEleitorInvalido, ExcecaoEleitorJaVotou{
+        
+        Eleitor e = buscarEleitor(matricula);
+        if(e == null){
+            throw new ExcecaoEleitorInvalido();
+        }
+        
+        if(!e.isAptoVotar()){
+            throw new ExcecaoEleitorJaVotou();
+        }
+        
         boolean valido = false;
         for(Candidato c : candidatos){                
             if(voto == c.getNumero()){
@@ -76,5 +89,14 @@ public class ControleEleicao {
         }else{
             return candidatos.get(indiceVencedor);
         }        
+    }
+
+    private Eleitor buscarEleitor(String matricula) {
+        for(Eleitor e : eleitores){
+            if(e.getMatricula().equals(matricula)){
+                return e;
+            }
+        }
+        return null;
     }
 }

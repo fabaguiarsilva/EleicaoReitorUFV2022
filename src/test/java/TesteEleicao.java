@@ -40,14 +40,14 @@ public class TesteEleicao {
     }
     
     @Test
-    public void teste01(){        
+    public void teste01() throws Exception {        
         
         inicia();
         
-        eleicao.votar(1);
-        eleicao.votar(1);
-        eleicao.votar(1);        
-        eleicao.votar(1);
+        eleicao.votar("EF12345",1);
+        eleicao.votar("EF23456",1);
+        eleicao.votar("EF34567",1);        
+        eleicao.votar("EF45678",1);
         
         Candidato vencedor = eleicao.apuracao();
         assertEquals(vencedor.getNumero(), 1);
@@ -56,14 +56,15 @@ public class TesteEleicao {
     
     
     @Test
-    public void teste02(){
+    public void teste02() throws Exception {
         
         inicia();
+                
+        eleicao.votar("EF12345",92);
+        eleicao.votar("EF23456",1);
+        eleicao.votar("EF34567",1);        
+        eleicao.votar("EF45678",1);
         
-        eleicao.votar(92);
-        eleicao.votar(1);
-        eleicao.votar(1);        
-        eleicao.votar(1);
         
         Candidato vencedor = eleicao.apuracao();
         assertEquals(vencedor.getNumero(), 1);
@@ -71,74 +72,74 @@ public class TesteEleicao {
     }  
     
     @Test
-    public void teste03(){
+    public void teste03() throws Exception {
         
         inicia();
         
-        eleicao.votar(1);
-        eleicao.votar(1);
-        eleicao.votar(1);        
-        eleicao.votar(92);
-        
+        eleicao.votar("EF12345",1);
+        eleicao.votar("EF23456",1);
+        eleicao.votar("EF34567",1);        
+        eleicao.votar("EF45678",92);
+                
         Candidato vencedor = eleicao.apuracao();
         assertEquals(vencedor.getNumero(), 1);
         
     }    
     
     @Test
-    public void teste04(){
+    public void teste04() throws Exception {
         
         inicia();
         
-        eleicao.votar(1);
-        eleicao.votar(1);
-        eleicao.votar(92);        
-        eleicao.votar(92);
-        
+        eleicao.votar("EF12345",1);
+        eleicao.votar("EF23456",1);
+        eleicao.votar("EF34567",92);        
+        eleicao.votar("EF45678",92);
+
         Candidato vencedor = eleicao.apuracao();
         assertNull(vencedor);
         
     }    
     
     @Test
-    public void teste05(){
+    public void teste05() throws Exception {
 
         inicia();
         
-        eleicao.votar(3);
-        eleicao.votar(3);
-        eleicao.votar(3);        
-        eleicao.votar(3);
-        
+        eleicao.votar("EF12345",3);
+        eleicao.votar("EF23456",3);
+        eleicao.votar("EF34567",3);        
+        eleicao.votar("EF45678",3);
+                
         Candidato vencedor = eleicao.apuracao();
         assertEquals(vencedor.getNumero(), 3);
         
     }
 
     @Test
-    public void teste06(){
+    public void teste06() throws Exception {
 
         inicia();
         
-        eleicao.votar(3);
-        eleicao.votar(92);
-        eleicao.votar(3);        
-        eleicao.votar(3);
-        
+        eleicao.votar("EF12345",3);
+        eleicao.votar("EF23456",92);
+        eleicao.votar("EF34567",3);        
+        eleicao.votar("EF45678",3);
+                
         Candidato vencedor = eleicao.apuracao();
         assertEquals(vencedor.getNumero(), 3);
         
     }
     @Test
-    public void teste07(){
+    public void teste07() throws Exception {
         
         inicia();
         
-        eleicao.votar(1);
-        eleicao.votar(2);
-        eleicao.votar(1);        
-        eleicao.votar(2);
-        
+        eleicao.votar("EF12345",1);
+        eleicao.votar("EF23456",2);
+        eleicao.votar("EF34567",1);        
+        eleicao.votar("EF45678",2);
+                       
         Candidato vencedor = eleicao.apuracao();
         assertEquals(vencedor.getNumero(), 1);
         

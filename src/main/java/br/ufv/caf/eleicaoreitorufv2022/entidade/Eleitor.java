@@ -9,4 +9,12 @@ public class Eleitor extends Estudante {
         super(nome,matricula,curso);
         aptoVotar = true;
     }
+    
+    public boolean isAptoVotar(){
+        return this.aptoVotar;
+    }
+    
+    public void indicaVotou(){
+        this.aptoVotar=false;
+    }
 }

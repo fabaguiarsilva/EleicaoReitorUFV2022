@@ -1,6 +1,8 @@
 package br.ufv.caf.eleicaoreitorufv2022.visao;
 
 import br.ufv.caf.eleicaoreitorufv2022.controle.ControleEleicao;
+import br.ufv.caf.eleicaoreitorufv2022.entidade.excecao.ExcecaoEleitorInvalido;
+import br.ufv.caf.eleicaoreitorufv2022.entidade.excecao.ExcecaoEleitorJaVotou;
 import java.util.Scanner;
 
 public class TelaVotacao {
@@ -13,16 +15,20 @@ public class TelaVotacao {
         this.controle = controle;
     }
     
-    private void votar(){
+    private void votar() {
         System.out.println("Digite sua matricula: ");
-        int matricula = scan.nextInt();       
+        String matricula = scan.next();       
         
         System.out.println("Digite seu voto: ");
         int voto = scan.nextInt();
                 
-        //TODO Votar??
-        controle.votar(voto);
-        
+        try{
+            controle.votar(matricula, voto);
+        }catch(ExcecaoEleitorInvalido ei){
+            System.err.println(ei.getMessage());
+        }catch(ExcecaoEleitorJaVotou ev){
+            System.err.println(ev.getMessage());
+        }        
     }
     
     public void iniciarVotacao(){

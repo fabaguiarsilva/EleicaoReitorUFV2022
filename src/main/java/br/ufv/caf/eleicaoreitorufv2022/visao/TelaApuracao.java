@@ -2,6 +2,7 @@ package br.ufv.caf.eleicaoreitorufv2022.visao;
 
 import br.ufv.caf.eleicaoreitorufv2022.controle.ControleEleicao;
 import br.ufv.caf.eleicaoreitorufv2022.entidade.Candidato;
+import java.io.IOException;
 
 public class TelaApuracao {
 
