@@ -30,4 +30,10 @@ public class Docente extends MembroAcademico {
         
         return this.getMatricula().matches("\\d\\d\\d\\d");
     }    
+    
+    @Override
+    public String formatoMatricula() {
+        return "\\d\\d\\d\\d";
+    }    
+    
 }

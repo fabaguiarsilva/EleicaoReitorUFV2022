@@ -2,29 +2,29 @@ package br.ufv.caf.eleicaoreitorufv2022.controle;
 
 import br.ufv.caf.eleicaoreitorufv2022.entidade.Candidato;
 import br.ufv.caf.eleicaoreitorufv2022.entidade.Eleitor;
-import br.ufv.caf.eleicaoreitorufv2022.entidade.excecao.ExcecaoEleitorInvalido;
-import br.ufv.caf.eleicaoreitorufv2022.entidade.excecao.ExcecaoEleitorJaVotou;
+import br.ufv.caf.eleicaoreitorufv2022.entidade.excecao.*;
+import br.ufv.caf.eleicaoreitorufv2022.persistencia.DAO;
 import java.util.ArrayList;
 
 public class ControleEleicao {
-
-    private ArrayList<Candidato> candidatos;
     private int quantidadeNulos;
-    private ArrayList<Eleitor> eleitores;
+    
+    private DAO<Candidato> candidatos;    
+    private DAO<Eleitor> eleitores;
     
     
     public ControleEleicao(){        
         candidatos 
-            = new ArrayList<Candidato>();
-        eleitores = new ArrayList<Eleitor>();
+            = new DAO<Candidato>();
+        eleitores = new DAO<Eleitor>();
         quantidadeNulos = 0;
     }
        
-    public void addCandidato(Candidato c){
+    public void addCandidato(Candidato c) throws ExcecaoMatriculaInvalida {
         candidatos.add(c);
     }
     
-    public void addEleitor(Eleitor e){
+    public void addEleitor(Eleitor e) throws ExcecaoMatriculaInvalida  {
         eleitores.add(e);
     }   
     
@@ -41,7 +41,8 @@ public class ControleEleicao {
         }
         
         boolean valido = false;
-        for(Candidato c : candidatos){                
+
+        for(Candidato c : candidatos.getAll()){                
             if(voto == c.getNumero()){
                 c.incrVotos();
                 valido = true;
@@ -56,8 +57,9 @@ public class ControleEleicao {
     
     public String geraBoletim(){
         String boletim = "";
-        for(int i=0; i<candidatos.size(); i++){
-            boletim += candidatos.get(i).toString();            
+        ArrayList<Candidato> listaCandidatos = candidatos.getAll();
+        for(int i=0; i<listaCandidatos.size(); i++){
+            boletim += listaCandidatos.get(i).toString();            
             boletim += "\n##################\n";
         }   
         return boletim;
@@ -71,12 +73,13 @@ public class ControleEleicao {
     public Candidato apuracao(){
         int indiceVencedor = 0;
         boolean empate = false;
-        for(int i=1; i<candidatos.size(); i++){
-            if(candidatos.get(i).getVotos() > candidatos.get(indiceVencedor).getVotos()){
+        ArrayList<Candidato> listaCandidatos = candidatos.getAll();
+        for(int i=1; i<listaCandidatos.size(); i++){
+            if(listaCandidatos.get(i).getVotos() > listaCandidatos.get(indiceVencedor).getVotos()){
                 indiceVencedor = i;
                 empate = false;
-            }else if(candidatos.get(i).getVotos() ==
-                        candidatos.get(indiceVencedor).getVotos()){
+            }else if(listaCandidatos.get(i).getVotos() ==
+                        listaCandidatos.get(indiceVencedor).getVotos()){
                 empate = true;                
             }
         }
@@ -87,16 +90,11 @@ public class ControleEleicao {
         if(empate){
             return null;
         }else{
-            return candidatos.get(indiceVencedor);
+            return listaCandidatos.get(indiceVencedor);
         }        
     }
 
     private Eleitor buscarEleitor(String matricula) {
-        for(Eleitor e : eleitores){
-            if(e.getMatricula().equals(matricula)){
-                return e;
-            }
-        }
-        return null;
+        return eleitores.find(matricula);
     }
 }

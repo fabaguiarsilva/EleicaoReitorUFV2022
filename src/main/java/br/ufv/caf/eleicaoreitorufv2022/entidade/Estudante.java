@@ -22,4 +22,10 @@ public class Estudante extends MembroAcademico {
     public boolean matriculaValida() {
         return getMatricula().matches("E[F|V]\\d\\d\\d\\d\\d");
     }    
+
+    @Override
+    public String formatoMatricula() {
+        return "E[F|V]\\d\\d\\d\\d\\d";
+    }
+        
 }

@@ -11,6 +11,7 @@ public abstract class MembroAcademico {
     }
     
     public abstract boolean matriculaValida();
+    public abstract String formatoMatricula();
     
     @Override
     public String toString(){
