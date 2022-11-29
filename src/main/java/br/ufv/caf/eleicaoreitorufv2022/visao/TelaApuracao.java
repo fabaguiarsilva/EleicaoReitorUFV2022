@@ -2,7 +2,6 @@ package br.ufv.caf.eleicaoreitorufv2022.visao;
 
 import br.ufv.caf.eleicaoreitorufv2022.controle.ControleEleicao;
 import br.ufv.caf.eleicaoreitorufv2022.entidade.Candidato;
-import java.io.IOException;
 
 public class TelaApuracao {
 
@@ -20,7 +19,7 @@ public class TelaApuracao {
     public void apurar(){
         Candidato vencedor = controle.apuracao();
         if(vencedor != null){
-                System.out.println("O vencedor foi o"
+                System.out.println("O vencedor foi o "
                 + vencedor.toString());
 
         }else{

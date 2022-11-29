@@ -4,9 +4,10 @@ import br.ufv.caf.eleicaoreitorufv2022.controle.ControleEleicao;
 import br.ufv.caf.eleicaoreitorufv2022.entidade.excecao.ExcecaoEleitorInvalido;
 import br.ufv.caf.eleicaoreitorufv2022.entidade.excecao.ExcecaoEleitorJaVotou;
 import java.util.Scanner;
+import org.apache.log4j.Logger;
 
 public class TelaVotacao {
-    
+    private static final Logger LOGGER = Logger.getLogger("br.ufv.caf.eleicao");
     private Scanner scan;
     private ControleEleicao controle;
     
@@ -25,9 +26,11 @@ public class TelaVotacao {
         try{
             controle.votar(matricula, voto);
         }catch(ExcecaoEleitorInvalido ei){
+            LOGGER.error(ei.getMessage());                    
             System.err.println(ei.getMessage());
-        }catch(ExcecaoEleitorJaVotou ev){
-            System.err.println(ev.getMessage());
+        }catch(ExcecaoEleitorJaVotou ev){            
+            LOGGER.error(ev.getMessage());
+            System.err.println(ev.getMessage());            
         }        
     }
     
@@ -43,9 +46,7 @@ public class TelaVotacao {
                     break;
                 default:
                     System.out.println("Opção inválida!");
-            }
-            
+            }            
         }
-    }
-    
+    }    
 }

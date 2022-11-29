@@ -5,6 +5,7 @@ import br.ufv.caf.eleicaoreitorufv2022.entidade.Eleitor;
 import br.ufv.caf.eleicaoreitorufv2022.entidade.excecao.*;
 import br.ufv.caf.eleicaoreitorufv2022.persistencia.DAO;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ControleEleicao {
     private int quantidadeNulos;
@@ -52,12 +53,18 @@ public class ControleEleicao {
 
         if(!valido){
             quantidadeNulos++;
-        }                    
+        }             
+        
+        //indica que o eleitor já votou, para não poder votar novamente
+        e.indicaVotou();
     }
     
     public String geraBoletim(){
         String boletim = "";
         ArrayList<Candidato> listaCandidatos = candidatos.getAll();
+        
+        Collections.sort(listaCandidatos);
+        
         for(int i=0; i<listaCandidatos.size(); i++){
             boletim += listaCandidatos.get(i).toString();            
             boletim += "\n##################\n";

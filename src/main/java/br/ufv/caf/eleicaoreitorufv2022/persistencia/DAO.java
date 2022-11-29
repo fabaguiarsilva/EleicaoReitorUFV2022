@@ -34,7 +34,5 @@ public class DAO<E extends MembroAcademico> {
     
     public ArrayList<E> getAll(){
         return dados;
-    }
-    
-    
+    }       
 }

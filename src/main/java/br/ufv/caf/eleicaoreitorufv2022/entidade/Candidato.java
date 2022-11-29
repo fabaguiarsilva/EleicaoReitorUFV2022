@@ -1,6 +1,7 @@
 package br.ufv.caf.eleicaoreitorufv2022.entidade;
 
-public class Candidato extends Docente {
+public class Candidato extends Docente 
+                        implements Comparable<Candidato>{
     private int numero;
     private int votos;
     
@@ -30,5 +31,14 @@ public class Candidato extends Docente {
         return super.toString()+
                 "\nNúmero: "+this.numero+
                 "\nVotos: "+this.votos;
+    }
+
+    @Override
+    public int compareTo(Candidato outro) {
+        if(this.getNumero() > outro.getNumero())
+            return 1;
+        if(this.getNumero() < outro.getNumero())
+            return -1;
+        return 0;
     }
 }

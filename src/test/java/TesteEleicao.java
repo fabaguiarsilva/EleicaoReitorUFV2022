@@ -2,6 +2,7 @@
 import br.ufv.caf.eleicaoreitorufv2022.controle.ControleEleicao;
 import br.ufv.caf.eleicaoreitorufv2022.entidade.Candidato;
 import br.ufv.caf.eleicaoreitorufv2022.entidade.Eleitor;
+import br.ufv.caf.eleicaoreitorufv2022.entidade.excecao.ExcecaoMatriculaInvalida;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +15,7 @@ public class TesteEleicao {
     }
     
     @BeforeEach
-    public void inicia(){
+    public void inicia() throws ExcecaoMatriculaInvalida{
         eleicao = new ControleEleicao();
         eleicao.addCandidato
             (new Candidato("Candidato 1","1111", "Computação", 1));
